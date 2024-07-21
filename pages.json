@@ -1,0 +1,22 @@
+{
+	"pages": [{
+		"path": "pages/accredit/index",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "tuchuang",
+		"navigationBarBackgroundColor": "#4285f3",
+		"backgroundColor": "#4285f3"
+	},
+	"uniIdRouter": {}
+}
