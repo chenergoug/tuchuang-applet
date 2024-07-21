@@ -37,7 +37,10 @@ $uni-bg-color-mask: rgba(0, 0, 0, 0.4);//遮罩颜色
 $uni-border-color: #e6e8ea;
 
 /* 尺寸变量 */
-$uni-event-height: 30px;
+$uni-event-height-min: 24px;
+$uni-event-height-sm: 26px;
+$uni-event-height-base: 30px;
+$uni-event-height-max: 36px;
 
 /* 文字尺寸 */
 $uni-font-size-min: 10px;

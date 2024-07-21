@@ -2,7 +2,7 @@
 	<view class="accredit tuchuang_container">
 		<view class="accredit_main">
 			<view class="accredit_greet">
-				<text>土创信息科技，</text>
+				<text>{{accreditTitle}}，</text>
 				<text>欢迎您！</text>
 			</view>
 
@@ -17,13 +17,13 @@
 			</view>
 
 			<view class="accredit_terminal">
-				<view class="accredit_terminal-list">
+				<view @click="handelToggleTerminal(0)" class="accredit_terminal-list">
 					<text>微信登陆</text>
 				</view>
-				<view class="accredit_terminal-list">
+				<view @click="handelToggleTerminal(1)"  class="accredit_terminal-list">
 					<text>账号登陆</text>
 				</view>
-				<view class="accredit_terminal-list">
+				<view @click="handelToggleTerminal(2)"  class="accredit_terminal-list">
 					<text>注册用户</text>
 				</view>
 			</view>
@@ -32,6 +32,11 @@
 </template>
 
 <script setup>
+	import { ref } from 'vue'
+	const accreditTitle = ref('土创信息科技')
+	const handelToggleTerminal = (val)=>{
+		console.log('....',val)
+	}
 </script>
 
 <style lang="scss">
@@ -57,11 +62,11 @@
 				margin-top: $uni-spacing-col-max;
 
 				.accredit_form-list {
-					height: 30px;
 					display: flex;
 					align-items: center;
-					border-bottom: 1px solid $uni-text-color-inverse;
+					height: $uni-event-height-max;
 					margin-bottom: $uni-spacing-col-max;
+					border-bottom: 1px solid $uni-text-color-inverse;
 
 					uni-input,input {
 						width: 100%;
