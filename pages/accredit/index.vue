@@ -9,6 +9,7 @@
 			<view class="accredit_form" v-if="accreditWay === 0">
 				<button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">微信一键登陆</button>
 			</view>
+
 			<!-- weichat -->
 			<view class="accredit_form" v-if="accreditWay === 1">
 				<view class="accredit_form-list">
@@ -19,6 +20,7 @@
 				</view>
 				<button>登 陆</button>
 			</view>
+
 			<!-- create user -->
 			<view class="accredit_form" v-if="accreditWay === 2">
 				<view class="accredit_form-list">
@@ -52,22 +54,29 @@
 	import {
 		ref
 	} from 'vue'
+	import ErrMessage from '@/utils/errinform.js'
+	import {
+		StartWechatLogin,
+		StartUserLogin,
+		StartCreateUser
+	} from '@/api/login.js'
 	const accreditWay = ref(0) // 0 账号 1 微信 2 注册
-	const accreditTitle = ref('土创信息科技')
+	const accreditTitle = ref('汉卫教育科技')
 	// 选择登陆方式
 	const handelToggleTerminal = (val) => {
 		accreditWay.value = val
 	}
 	// 获取用户code用于手机号获取
-	const getPhoneNumber = (e)=>{
-		console.log(e)
-		if(e.detail.errno){
-			uni.showToast({
-				icon:'error',
-				title:'登陆失败，请稍后再试，或切换登陆方式！'
-			})
-		}else{
+	const getPhoneNumber = (e) => {
+		if (e.detail.errno) {
+			ErrMessage('error', '登陆失败，请稍后再试，或切换登陆方式！')
+		} else {
 			const code = e.detail.code
+			StartWechatLogin({
+				code
+			}).then(res => {
+				console.log('res', res)
+			})
 		}
 	}
 </script>

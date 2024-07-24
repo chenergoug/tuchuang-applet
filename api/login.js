@@ -3,7 +3,7 @@ import request from "../utils/request";
 // 微信获取手机号码
 export const StartWechatLogin = (data)=>{
 	return request({
-		url:'',
+		url:'/accredit',
 		method:'get',
 		data
 	})
@@ -12,7 +12,7 @@ export const StartWechatLogin = (data)=>{
 // 账号登陆
 export const StartUserLogin = (data)=>{
 	return request({
-		url:'',
+		url:'/user',
 		method:'post',
 		data
 	})
@@ -21,7 +21,7 @@ export const StartUserLogin = (data)=>{
 // 账号注册
 export const StartCreateUser = (data)=>{
 	return request({
-		url:'',
+		url:'/create',
 		method:'post',
 		data
 	})

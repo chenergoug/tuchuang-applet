@@ -1,12 +1,12 @@
 // bast_url
 const bast_url = 'http://localhost:8088';
 // 超时时长
-const tomeout = 5000
+const timeout = 5000
 
 // Request 封装
 export default (config) => {
 	const {
-		user,
+		url,
 		method,
 		data
 	} = config
