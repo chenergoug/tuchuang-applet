@@ -23,10 +23,15 @@ export default (config) => {
 					resolve(res.data)
 				} else {
 					// 请求失败
+					uni.showToast({
+						icon: "none",
+						title: res.message
+					})
 				}
 			},
 			// 失败
 			fail(err) {
+				console.log('**err**', err)
 				reject(err)
 			},
 			// 成功失败都执行

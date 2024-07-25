@@ -65,19 +65,16 @@
 	} from '@/api/login.js'
 	const accreditWay = ref(1) //  0 微信 1 账号 2 注册
 	const accreditTitle = ref('汉卫教育科技')
-	const formData = ref({
-		name: '张三',
-		phone: '18112883570',
-		password: '123456'
-	})
+	const formData = ref({})
 	// 选择登陆方式
 	const handelToggleTerminal = (val) => {
+		formData.value = {}
 		accreditWay.value = val
 	}
 	// 获取用户code用于手机号获取
 	const getPhoneNumber = (e) => {
 		if (e.detail.errno) {
-			ErrMessage('error', '登陆失败，请稍后再试，或切换登陆方式！')
+			ErrMessage('登陆失败，请稍后再试，或切换登陆方式！','error')
 		} else {
 			const code = e.detail.code
 			StartWechatLogin({
@@ -91,23 +88,33 @@
 	const handelOnSubmit = () => {
 		if (accreditWay.value === 1) {
 			// 登录
-			StartUserLogin(formData.value).then(res => {
-				console.log('01-res', res)
-			}).catch((error) => {
-				console.log('01-err', error)
+			StartUserLogin(formData.value).then(data => {
+				uni.setStorage({
+					key: 'userData',
+					data,
+					success() {
+						formData.value = {}
+						handelSkipHome()
+					}
+				})
 			})
 		} else {
 			// 注册
 			StartCreateUser(formData.value).then(res => {
-				console.log('02-res', res)
-			}).catch((error) => {
-				console.log('02-err', error)
+				ErrMessage('注册成功！')
+				accreditWay.value = 1
 			})
 		}
 	}
+	// 登录跳转
+	const handelSkipHome = () => {
+		uni.navigateTo({
+			url: '/pages/index/index'
+		})
+	}
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 	.accredit {
 		position: relative;
 		background: linear-gradient(70deg, #2041ea, #779efa);

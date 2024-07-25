@@ -1,16 +1,16 @@
 {
 	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},{
 		"path": "pages/accredit/index",
 		"style": {
 			"navigationStyle": "custom"
 		}
-	},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
+	}
+		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
