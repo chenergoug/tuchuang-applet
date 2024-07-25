@@ -1,14 +1,23 @@
 <script>
+	const globalData = {}
 	export default {
-		onLaunch: function() {
+		onLaunch: () => {
+			uni.getSystemInfo({
+				success: (res) => {
+					globalData.pixel = res.pixelRatio
+					globalData.width = res.windowWidth
+					globalData.height = res.windowHeight
+				}
+			})
 			console.log('App Launch')
 		},
-		onShow: function() {
+		onShow: () => {
 			console.log('App Show')
 		},
-		onHide: function() {
+		onHide: () => {
 			console.log('App Hide')
-		}
+		},
+		globalData
 	}
 </script>
 

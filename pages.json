@@ -1,5 +1,10 @@
 {
 	"pages": [{
+		"path": "pages/toolRuler/index",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom"
