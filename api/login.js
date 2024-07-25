@@ -12,7 +12,7 @@ export const StartWechatLogin = (data)=>{
 // 账号登陆
 export const StartUserLogin = (data)=>{
 	return request({
-		url:'/user',
+		url:'/user/login',
 		method:'post',
 		data
 	})
@@ -21,7 +21,7 @@ export const StartUserLogin = (data)=>{
 // 账号注册
 export const StartCreateUser = (data)=>{
 	return request({
-		url:'/create',
+		url:'/user/create',
 		method:'post',
 		data
 	})

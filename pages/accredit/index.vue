@@ -13,23 +13,26 @@
 			<!-- weichat -->
 			<view class="accredit_form" v-if="accreditWay === 1">
 				<view class="accredit_form-list">
-					<input type="text" placeholder="请输入用户名" />
+					<input v-model="formData.phone" type="text" placeholder="请输入手机号码" />
 				</view>
 				<view class="accredit_form-list">
-					<input type="text" placeholder="请输入密码" />
+					<input v-model="formData.password" type="password" placeholder="请输入密码" />
 				</view>
-				<button>登 陆</button>
+				<button @click="handelOnSubmit">登 陆</button>
 			</view>
 
 			<!-- create user -->
 			<view class="accredit_form" v-if="accreditWay === 2">
 				<view class="accredit_form-list">
-					<input type="text" placeholder="请输入手机号码" />
+					<input v-model="formData.name" type="text" placeholder="请输入用户名" />
 				</view>
 				<view class="accredit_form-list">
-					<input type="text" placeholder="请输入密码" />
+					<input v-model="formData.phone" type="text" placeholder="请输入手机号码" />
 				</view>
-				<button>注 册</button>
+				<view class="accredit_form-list">
+					<input v-model="formData.password" type="password" placeholder="请输入密码" />
+				</view>
+				<button @click="handelOnSubmit">注 册</button>
 			</view>
 
 			<view class="accredit_terminal">
@@ -60,8 +63,13 @@
 		StartUserLogin,
 		StartCreateUser
 	} from '@/api/login.js'
-	const accreditWay = ref(0) // 0 账号 1 微信 2 注册
+	const accreditWay = ref(1) //  0 微信 1 账号 2 注册
 	const accreditTitle = ref('汉卫教育科技')
+	const formData = ref({
+		name: '张三',
+		phone: '18112883570',
+		password: '123456'
+	})
 	// 选择登陆方式
 	const handelToggleTerminal = (val) => {
 		accreditWay.value = val
@@ -76,6 +84,24 @@
 				code
 			}).then(res => {
 				console.log('res', res)
+			})
+		}
+	}
+	//  执行注册或者登录
+	const handelOnSubmit = () => {
+		if (accreditWay.value === 1) {
+			// 登录
+			StartUserLogin(formData.value).then(res => {
+				console.log('01-res', res)
+			}).catch((error) => {
+				console.log('01-err', error)
+			})
+		} else {
+			// 注册
+			StartCreateUser(formData.value).then(res => {
+				console.log('02-res', res)
+			}).catch((error) => {
+				console.log('02-err', error)
 			})
 		}
 	}
