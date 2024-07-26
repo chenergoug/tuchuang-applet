@@ -3,12 +3,11 @@
 	export default {
 		onLaunch: () => {
 			uni.getSystemInfo({
-				success: (res) => {
-					console.log('res.pixelRatio',res.pixelRatio)
-					console.log('res',res)
-					globalData.pixel = res.pixelRatio
-					globalData.width = res.windowWidth
-					globalData.height = res.windowHeight
+				success: (systemInfo) => {
+					console.log('systemInfo',systemInfo)
+					globalData.pixel = systemInfo.pixelRatio
+					globalData.width = systemInfo.windowWidth 
+					globalData.height = systemInfo.windowHeight 
 				}
 			})
 			console.log('App Launch')
