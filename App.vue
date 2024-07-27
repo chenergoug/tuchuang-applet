@@ -4,7 +4,7 @@
 		onLaunch: () => {
 			uni.getSystemInfo({
 				success: (res) => {
-					console.log('res.pixelRatio',res.pixelRatio)
+					console.log('res.pixelRatio',res.devicePixelRatio)
 					console.log('res',res)
 					globalData.pixel = res.pixelRatio
 					globalData.width = res.windowWidth
