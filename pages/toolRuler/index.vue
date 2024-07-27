@@ -1,8 +1,12 @@
 <template>
 	<view class="tuchuang_container">
 		<view class="ruler-main">
-			<view class="ruler-event">123</view>
-			<view class="ruler-but">456</view>
+			<view class="ruler-event">
+				<view v-for="i in 152" />
+			</view>
+			<view class="ruler-but">
+				<view v-for="i in 12">{{i}}</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -18,19 +22,13 @@
 		width,
 		height
 	} = app
-	// 假设某个元素的高度为 300 像素
-	const elementPixelHeight = 300;
-
-	// 计算屏幕高度（以英寸为单位）
-	const screenHeightInches = height / pixel;
-	console.log('screenHeightInches', screenHeightInches)
-	// 将屏幕高度从英寸转换为毫米
-	const screenHeightMM = screenHeightInches * 25.4;
-	console.log('screenHeightMM', screenHeightMM)
-	// 计算元素的实际高度（以毫米为单位）
-	const elementHeightMM = (elementPixelHeight / height) * screenHeightMM;
-
-	console.log('元素的实际高度为: ', elementHeightMM, ' 毫米');
+	const ppi = 460
+	const screenWidthPx = width * pixel
+	const screenHeightPx = height * pixel
+	const entityWidth = Math.trunc(Math.round((screenWidthPx / ppi)) * 25.4)
+	const entityHeight = Math.trunc(Math.round((screenHeightPx / ppi)) * 25.4)
+	console.log(entityWidth, 'screenWidthPx-screenHeightPx',
+		entityHeight)
 </script>
 
 <style lang="scss" scoped>
@@ -42,8 +40,31 @@
 		background: #f0f;
 
 		.ruler-event {
-			width: 30%;
-			background: #ccc;
+			width: 10mm;
+			height: 100%;
+
+			view {
+				width: 10px;
+				height: 5.1px;
+				border-top: 1px solid #fff;
+				background: #ccc;
+			}
+
+			view:nth-child(10n) {
+				width: 20px;
+			}
+		}
+
+		.ruler-but {
+			width: calc(100% - 10mm);
+			display: flex;
+
+			view {
+				width: 10mm;
+				height: 10mm;
+				border-right: 1px solid #fff;
+				background: #333;
+			}
 		}
 	}
 </style>
